@@ -52,11 +52,6 @@ public class RequestWrapperFilter implements Filter {
 		String key = httpRequest.getHeader("key");
 		RSAKeyHolder.setKey(key);
 
-		if (String.valueOf(request.getContentType()).contains("multipart")) {
-			saveAES(key);
-			chain.doFilter(request, response);
-			return;
-		}
 
 		String encryptedBody = new String(httpRequest.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
 
